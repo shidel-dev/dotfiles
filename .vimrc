@@ -30,22 +30,14 @@ Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'kristijanhusak/vim-multiple-cursors'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'matchit.zip'
-if (has("python") || has("python3")) && exists('g:spf13_use_powerline') && !exists('g:spf13_use_old_powerline')
-    Plugin 'Lokaltog/powerline', {'rtp':'/powerline/bindings/vim'}
-elseif exists('g:spf13_use_powerline') && exists('g:spf13_use_old_powerline')
-    Plugin 'Lokaltog/vim-powerline'
-else
-    Plugin 'bling/vim-airline'
-endif
+Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'mbbill/undotree'
 Plugin 'nathanaelkane/vim-indent-guides'
-if !exists('g:spf13_no_views')
-    Plugin 'vim-scripts/restore_view.vim'
-endif
+Plugin 'vim-scripts/restore_view.vim'
 Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-abolish.git'
 Plugin 'osyo-manga/vim-over'
@@ -141,7 +133,7 @@ set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 " To disable the stripping of whitespace, add the following to your
 " .vimrc.before.local file:
 
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
 "autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
@@ -219,14 +211,12 @@ endif
 if has('gui_running')
     set guioptions-=T           " Remove the toolbar
     set lines=40                " 40 lines of text instead of 24
-    if !exists("g:spf13_no_big_font")
-        if LINUX() && has("gui_running")
-            set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
-        elseif OSX() && has("gui_running")
-            set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
-        elseif WINDOWS() && has("gui_running")
-            set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
-        endif
+    if LINUX() && has("gui_running")
+    	set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
+    elseif OSX() && has("gui_running")
+	set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
+    elseif WINDOWS() && has("gui_running")
+	set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
     endif
 else
     if &term == 'xterm' || &term == 'screen'
@@ -274,4 +264,4 @@ function! StripTrailingWhitespace()
     " clean up: restore previous search history, and cursor position
     let @/=_s
     call cursor(l, c)
-e
+endfunction
