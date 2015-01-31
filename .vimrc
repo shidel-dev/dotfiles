@@ -8,7 +8,6 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-sensible'
 if executable('ag')
   Plugin 'mileszs/ack.vim'
   let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
@@ -151,6 +150,9 @@ map <C-H> <C-W>h<C-W>_
 
 noremap j gj
 noremap k gk
+
+cabbrev Q quit
+cabbrev W write
 
 if isdirectory(expand("~/.vim/bundle/nerdtree"))
     let g:NERDShutUp=1
