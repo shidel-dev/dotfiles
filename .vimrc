@@ -19,43 +19,35 @@ elseif executable('ack')
 endif
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'spf13/vim-colors'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'spf13/vim-autoclose'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'kristijanhusak/vim-multiple-cursors'
 Plugin 'vim-scripts/sessionman.vim'
-Plugin 'matchit.zip'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'mbbill/undotree'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'vim-scripts/restore_view.vim'
 Plugin 'mhinz/vim-signify'
-Plugin 'tpope/vim-abolish.git'
 Plugin 'osyo-manga/vim-over'
-Plugin 'kana/vim-textobj-user'
-Plugin 'kana/vim-textobj-indent'
-Plugin 'gcmt/wildfire.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter'
-
-
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'tpope/vim-fireplace'
 Plugin 'guns/vim-clojure-static'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'vim-scripts/paredit.vim'
 Plugin 'tpope/vim-git'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'fatih/vim-go'
+Plugin 'Valloric/YouCompleteMe'
+
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -132,7 +124,7 @@ set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 " To disable the stripping of whitespace, add the following to your
 " .vimrc.before.local file:
 
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+autocmd FileType c,cpp,java,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
 "autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
@@ -150,9 +142,6 @@ map <C-H> <C-W>h<C-W>_
 
 noremap j gj
 noremap k gk
-
-cabbrev Q quit
-cabbrev W write
 
 if isdirectory(expand("~/.vim/bundle/nerdtree"))
     let g:NERDShutUp=1
@@ -235,6 +224,7 @@ colorscheme Tomorrow-Night-Eighties
 
 let g:ack_mappings = { "s": "<C-W><CR><C-W>H<C-W>b<C-W>J<C-W>t" }
 let g:ruby_path='/usr/bin/ruby'
+
 
 autocmd Filetype javascript set tabstop=8|set shiftwidth=2|set expandtab
 
