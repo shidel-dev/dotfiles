@@ -9,13 +9,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 if executable('ag')
-  Plugin 'mileszs/ack.vim'
-  let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+    Plugin 'mileszs/ack.vim'
+    let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 elseif executable('ack-grep')
-  let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-  Plugin 'mileszs/ack.vim'
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+    Plugin 'mileszs/ack.vim'
 elseif executable('ack')
-  Plugin 'mileszs/ack.vim'
+    Plugin 'mileszs/ack.vim'
 endif
 
 Plugin 'scrooloose/nerdtree'
@@ -45,8 +45,8 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'vim-scripts/paredit.vim'
 Plugin 'tpope/vim-git'
 Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'fatih/vim-go'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'fatih/vim-go'
 
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -54,7 +54,7 @@ filetype plugin indent on    " required
 
 set background=dark         " Assume a dark background
 " if !has('gui')
-    "set term=$TERM          " Make arrow and other keys work
+"set term=$TERM          " Make arrow and other keys work
 " endif
 filetype plugin indent on   " Automatically detect file types.
 syntax on                   " Syntax highlighting
@@ -119,6 +119,7 @@ set splitright                  " Puts new vsplit windows to the right of the cu
 set splitbelow                  " Puts new split windows to the bottom of the current
 "set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+set laststatus=2
 "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 " Remove trailing whitespaces and ^M chars
 " To disable the stripping of whitespace, add the following to your
@@ -164,32 +165,32 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
     nnoremap <silent> <D-t> :CtrlP<CR>
     nnoremap <silent> <D-r> :CtrlPMRU<CR>
     let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\.git$\|\.hg$\|\.svn$',
-	\ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+                \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+                \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
     if executable('ag')
-	let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+        let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
     elseif executable('ack-grep')
-	let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
+        let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
     elseif executable('ack')
-	let s:ctrlp_fallback = 'ack %s --nocolor -f'
+        let s:ctrlp_fallback = 'ack %s --nocolor -f'
     else
-	let s:ctrlp_fallback = 'find %s -type f'
+        let s:ctrlp_fallback = 'find %s -type f'
     endif
     let g:ctrlp_user_command = {
-	\ 'types': {
-	    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-	    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-	\ },
-	\ 'fallback': s:ctrlp_fallback
-    \ }
+                \ 'types': {
+                \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+                \ },
+                \ 'fallback': s:ctrlp_fallback
+                \ }
 
     if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
-	" CtrlP extensions
-	let g:ctrlp_extensions = ['funky']
+        " CtrlP extensions
+        let g:ctrlp_extensions = ['funky']
 
-	"funky
-	nnoremap <Leader>fu :CtrlPFunky<Cr>
+        "funky
+        nnoremap <Leader>fu :CtrlPFunky<Cr>
     endif
 endif
 
@@ -199,15 +200,21 @@ if isdirectory(expand("~/.vim/bundle/vim-indent-guides/"))
     let g:indent_guides_enable_on_vim_startup = 1
 endif
 
+if isdirectory(expand("~/.vim/bundle/YouCompleteMe/"))
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_min_num_of_chars_for_completion = 1
+endif
+
+
 if has('gui_running')
     set guioptions-=T           " Remove the toolbar
     set lines=40                " 40 lines of text instead of 24
     if LINUX() && has("gui_running")
-    	set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
+        set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
     elseif OSX() && has("gui_running")
-	set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
+        set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
     elseif WINDOWS() && has("gui_running")
-	set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
+        set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
     endif
 else
     if &term == 'xterm' || &term == 'screen'
@@ -240,9 +247,9 @@ function! NERDTreeInitAsNeeded()
     redir END
     let idx = stridx(bufoutput, "NERD_tree")
     if idx > -1
-	NERDTreeMirror
-	NERDTreeFind
-	wincmd l
+        NERDTreeMirror
+        NERDTreeFind
+        wincmd l
     endif
 endfunction
 
