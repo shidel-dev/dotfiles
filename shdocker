@@ -1,0 +1,13 @@
+#!/bin/bash
+SHELL=bash
+
+for i in "$@"
+do
+case $i in
+    -sh)
+    SHELL=sh
+    shift
+    ;;
+esac
+done
+docker exec -it "$1" $SHELL
